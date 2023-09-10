@@ -24,6 +24,11 @@ const choices = {
 	lizard: { name: "Lizard", defeats: ["paper", "spock"] },
 	spock: { name: "Spock", defeats: ["scissors", "rock"] },
 };
+
+let playerScoreNo = 0;
+let computerScoreNo = 0;
+let computerChoice = "";
+
 // reset all selected icons
 function resetSlected() {
 	allGameIcons.forEach((e) => {
@@ -31,9 +36,80 @@ function resetSlected() {
 	});
 }
 
+// add selected stylign &  computer choice
+function displayComputerChoice(computerChoice) {
+	switch (computerChoice) {
+		case "rock":
+			computerRock.classList.add("selected");
+			computerChoiceEl.textContent = " --- Rock";
+			break;
+		case "paper":
+			computerPaper.classList.add("selected");
+			computerChoiceEl.textContent = " --- Paper";
+			break;
+		case "scissors":
+			computerScissors.classList.add("selected");
+			computerChoiceEl.textContent = " --- Scissors";
+			break;
+		case "lizard":
+			computerLizard.classList.add("selected");
+			computerChoiceEl.textContent = " --- Lizard";
+			break;
+		case "spock":
+			computerSpock.classList.add("selected");
+			computerChoiceEl.textContent = " --- Spock";
+			break;
+		default:
+			break;
+	}
+}
+
+// Random computer choice
+function computerRandomChoice() {
+	const computerChoiceNo = Math.floor(Math.random() * 5 + 1);
+
+	switch (computerChoiceNo) {
+		case 1:
+			computerChoice = "rock";
+			break;
+		case 2:
+			computerChoice = "paper";
+			break;
+		case 3:
+			computerChoice = "scissors";
+			break;
+		case 4:
+			computerChoice = "lizard";
+			break;
+		case 5:
+			computerChoice = "spock";
+			break;
+
+		default:
+			break;
+	}
+}
+
+// update scroe
+function updateScroe(playerChoice) {
+	console.log(playerChoice, computerChoice);
+
+	if (playerChoice === computerChoice) {
+		resultText.textContent = "Its a Tie";
+	}
+}
+
+// call function to process turns
+function checkResult(playerChoice) {
+	resetSlected();
+	computerRandomChoice();
+	displayComputerChoice(computerChoice);
+	updateScroe(playerChoice);
+}
+
 // Passing player slection vlaue
 function select(playerChoice) {
-	resetSlected();
+	checkResult(playerChoice);
 	// add slecected styling
 	switch (playerChoice) {
 		case "rock":
