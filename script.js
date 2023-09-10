@@ -96,6 +96,19 @@ function updateScroe(playerChoice) {
 
 	if (playerChoice === computerChoice) {
 		resultText.textContent = "Its a Tie";
+	} else {
+		const choice = choices[playerChoice];
+		console.log(choice.defeats.indexOf(computerChoice));
+
+		if (choice.defeats.indexOf(computerChoice) > -1) {
+			resultText.textContent = "YOU WON!";
+			playerScoreNo++;
+			playerScoreEl.textContent = playerScoreNo;
+		} else {
+			resultText.textContent = "YOU lost!";
+			computerScoreNo++;
+			computerScoreEl.textContent = computerScoreNo;
+		}
 	}
 }
 
