@@ -36,6 +36,20 @@ function resetSlected() {
 	});
 }
 
+// Reset score & playerchoice/ computerchoice
+function resetAll() {
+	playerScoreNo = 0;
+	computerScoreNo = 0;
+	playerScoreEl.textContent = playerScoreNo;
+	computerScoreEl.textContent = computerScoreNo;
+
+	playerChoiceEl.textContent = "";
+	computerChoiceEl.textContent = "";
+	resultText.textContent = "";
+
+	resetSlected();
+}
+
 // add selected stylign &  computer choice
 function displayComputerChoice(computerChoice) {
 	switch (computerChoice) {
@@ -149,3 +163,6 @@ function select(playerChoice) {
 			break;
 	}
 }
+
+// on startup
+resetAll();
